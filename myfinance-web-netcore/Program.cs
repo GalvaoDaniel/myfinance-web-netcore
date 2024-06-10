@@ -1,7 +1,12 @@
+using myfinance_web_netcore.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.AddNpgsqlDbContext<MyFinanceDbContext>(
+    "db",
+    static settings => settings.ConnectionString = "Server=127.0.0.1;Port=5432;Database=myfinance;User Id=postgres;Password=2035;");
 
 var app = builder.Build();
 
