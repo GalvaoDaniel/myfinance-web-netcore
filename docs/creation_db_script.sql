@@ -28,60 +28,60 @@ GRANT ALL ON SCHEMA public TO pg_database_owner;
 
 -- Create Tables
 
-CREATE TABLE IF NOT EXISTS public.Planoconta
+CREATE TABLE IF NOT EXISTS public."PlanoConta"
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-    descricao character varying(50) COLLATE pg_catalog."default" NOT NULL,
-    tipo character(1) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT Planoconta_pkey PRIMARY KEY (id)
+    "Id" integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+    "Descricao" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "Tipo" character(1) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT Planoconta_pkey PRIMARY KEY ("Id")
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.Planoconta
+ALTER TABLE IF EXISTS public."PlanoConta"
     OWNER to postgres;
 
-CREATE TABLE IF NOT EXISTS public.Transacao
+CREATE TABLE IF NOT EXISTS public."Transacao"
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-    historico character varying COLLATE pg_catalog."default",
-    data timestamp with time zone NOT NULL,
-    valor numeric(9,2) NOT NULL,
-    planocontaid integer NOT NULL,
-    CONSTRAINT "Transacao_pkey" PRIMARY KEY (id),
-    CONSTRAINT "planoconta_foreignKey" FOREIGN KEY (planocontaid)
-        REFERENCES public.planoconta (id) MATCH SIMPLE
+    "Id" integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+    "Historico" character varying COLLATE pg_catalog."default",
+    "Data" timestamp with time zone NOT NULL,
+    "Valor" numeric(9,2) NOT NULL,
+    "PlanoContaId" integer NOT NULL,
+    CONSTRAINT "Transacao_pkey" PRIMARY KEY ("Id"),
+    CONSTRAINT "planoconta_foreignKey" FOREIGN KEY ("PlanoContaId")
+        REFERENCES public."PlanoConta" ("Id") MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.Transacao
+ALTER TABLE IF EXISTS public."Transacao"
     OWNER to postgres;
 
 
 -- Creation of initial data, if necessary.
 /*
-insert into public.planoconta(descricao, tipo)
+insert into public."PlanoConta"("Descricao", "Tipo")
 values ('Combustivel', 'D');
 
-insert into public.planoconta(descricao, tipo)
+insert into public."PlanoConta"("Descricao", "Tipo")
 values ('Alimentacao', 'D');
 
-insert into public.planoconta(descricao, tipo)
+insert into public."PlanoConta"("Descricao", "Tipo")
 values ('Educacao', 'D');
 
-insert into public.planoconta(descricao, tipo)
+insert into public."PlanoConta"("Descricao", "Tipo")
 values ('Salario', 'R');
 
-insert into public.planoconta(descricao, tipo)
+insert into public."PlanoConta"("Descricao", "Tipo")
 values ('Juros', 'R');
 
-insert into public.transacao(historico, data, valor, planocontaid)
+insert into public."Transacao"("Historico", "Data", "Valor", "PlanoContaId")
 values ('Gasolina Blazer', '2024-05-19 14:00', 360, 1);
 
-insert into public.transacao(historico, data, valor, planocontaid)
+insert into public."Transacao"("Historico", "Data", "Valor", "PlanoContaId")
 values ('Almoço', '2024-05-19 12:00', 120, 2);
 
 */
