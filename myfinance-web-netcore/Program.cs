@@ -1,4 +1,5 @@
 using myfinance_web_netcore.Infrastructure;
+using myfinance_web_netcore.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.AddNpgsqlDbContext<MyFinanceDbContext>(
     "db",
     static settings => settings.ConnectionString = "Server=127.0.0.1;Port=5432;Database=myfinance;User Id=postgres;Password=2035;");
+builder.Services.AddAutoMapper(typeof(PlanoContaMap));
 
 var app = builder.Build();
 

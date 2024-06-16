@@ -1,3 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Plano Conta";
 }
+
+<div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Plano de Contas</h2>
+            <a href="@Url.Action("Create", "PlanoConta")" class="btn btn-primary">Novo Plano de Conta</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<PlanoContaModel>)ViewBag.ListaPlanoConta)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Descricao</td>
+                        <td>@item.Tipo</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
