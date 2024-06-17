@@ -13,6 +13,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">#</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,8 +23,16 @@
                         <td>@item.Id</td>
                         <td>@item.Descricao</td>
                         <td>@item.Tipo</td>
+                        <td><button type="button" class="btn btn-block btn-outline-danger"
+                                onclick="Excluir(@item.Id.ToString())">Excluir</button></td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+
+<script>
+    function Excluir(id) {
+        window.location.href = "../PlanoConta/Excluir/" + id;
+    }
+</script>
