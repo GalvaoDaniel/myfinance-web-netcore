@@ -23,6 +23,8 @@
                         <td>@item.Id</td>
                         <td>@item.Descricao</td>
                         <td>@item.Tipo</td>
+                        <td><button type="button" class="btn btn-block btn-outline-warning"
+                                onclick="Editar(@item.Id.ToString())">Editar</button></td>
                         <td><button type="button" class="btn btn-block btn-outline-danger"
                                 onclick="Excluir(@item.Id.ToString())">Excluir</button></td>
                     </tr>
@@ -34,5 +36,9 @@
 <script>
     function Excluir(id) {
         window.location.href = "../PlanoConta/Excluir/" + id;
+    }
+
+    function Editar(id) {
+        window.location.href = "../PlanoConta/Editar/" + id;
     }
 </script>
