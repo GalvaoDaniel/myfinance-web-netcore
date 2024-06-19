@@ -29,6 +29,13 @@ public class PlanoContaController : Controller
     }
 
     [HttpGet]
+    [Route("Cadastro")]
+    public IActionResult Cadastro() 
+    {
+        return View();
+    }
+
+    [HttpGet]
     [Route("Excluir/{id}")]
     public IActionResult Excluir(int id)
     {
