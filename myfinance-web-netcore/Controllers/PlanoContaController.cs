@@ -32,6 +32,7 @@ public class PlanoContaController : Controller
     [Route("Cadastrar")]
     public IActionResult Cadastrar(PlanoContaModel model) 
     {
+        _planoContaService.Salvar(model);
         return View();
     }
 

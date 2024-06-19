@@ -1,4 +1,5 @@
 using AutoMapper;
+using myfinance_web_netcore.Domain;
 using myfinance_web_netcore.Infrastructure;
 using myfinance_web_netcore.Models;
 
@@ -41,7 +42,20 @@ namespace myfinance_web_netcore.Services
 
         public void Salvar(PlanoContaModel model)
         {
-            throw new NotImplementedException();
+            var dbSet = _myFinanceDbContext.PlanoConta;
+            var item = _mapper.Map<PlanoConta>(model);
+
+            if (item.Id == 0)
+            {
+                dbSet.Add(item);
+            }
+            else
+            {
+                dbSet.Attach(item);
+                _myFinanceDbContext.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+
+            _myFinanceDbContext.SaveChanges();
         }
     }
 }
