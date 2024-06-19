@@ -28,9 +28,16 @@ public class PlanoContaController : Controller
         return View();
     }
 
+    [HttpPost]
+    [Route("Cadastrar")]
+    public IActionResult Cadastrar(PlanoContaModel model) 
+    {
+        return View();
+    }
+
     [HttpGet]
-    [Route("Cadastro")]
-    public IActionResult Cadastro() 
+    [Route("Cadastrar")]
+    public IActionResult Cadastrar() 
     {
         return View();
     }
