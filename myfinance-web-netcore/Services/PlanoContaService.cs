@@ -37,7 +37,9 @@ namespace myfinance_web_netcore.Services
 
         public PlanoContaModel RetornarRegistro(int id)
         {
-            throw new NotImplementedException();
+            var item = _myFinanceDbContext.PlanoConta.Where(x => x.Id == id).First();
+            var registro = _mapper.Map<PlanoContaModel>(item);
+            return registro;
         }
 
         public void Salvar(PlanoContaModel model)
