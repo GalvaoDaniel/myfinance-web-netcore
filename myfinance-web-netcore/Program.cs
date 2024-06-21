@@ -10,7 +10,9 @@ builder.AddNpgsqlDbContext<MyFinanceDbContext>(
     "db",
     static settings => settings.ConnectionString = "Server=127.0.0.1;Port=5432;Database=myfinance;User Id=postgres;Password=2035;");
 builder.Services.AddAutoMapper(typeof(PlanoContaMap));
+builder.Services.AddAutoMapper(typeof(TransacaoMap));
 builder.Services.AddTransient<IPlanoContaService, PlanoContaService>();
+builder.Services.AddTransient<ITransacaoService, TransacaoService>();
 
 var app = builder.Build();
 

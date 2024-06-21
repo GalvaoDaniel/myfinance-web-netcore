@@ -24,7 +24,7 @@ public class TransacaoController : Controller
     public IActionResult Index()
     {
         var lista = _transacaoService.ListarRegistros();
-        ViewBag.ListaPlanoConta = lista;
+        ViewBag.ListaTransacao = lista;
         return View();
     }
 

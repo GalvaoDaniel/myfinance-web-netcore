@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using myfinance_web_netcore.Domain;
 using myfinance_web_netcore.Infrastructure;
 using myfinance_web_netcore.Models;
@@ -30,7 +31,7 @@ namespace myfinance_web_netcore.Services
 
         public List<TransacaoModel> ListarRegistros()
         {
-            var listaTransacao = _myFinanceDbContext.Transacao.ToList();
+            var listaTransacao = _myFinanceDbContext.Transacao.Include(x => x.PlanoConta).ToList();
             var lista = _mapper.Map<List<TransacaoModel>>(listaTransacao);
             return lista;
         }
