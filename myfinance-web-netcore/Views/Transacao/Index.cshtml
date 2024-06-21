@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Transacao";
+}
+
+<div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Transações</h2>
+            <a href="@Url.Action("Cadastrar", "Transacao")" class="btn btn-primary">Nova Transação</a>
+        </div>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Histórico</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">#</th>
+                    <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<TransacaoModel>)ViewBag.ListaTransacao)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Historico</td>
+                        <td>@item.ItemPlanoConta.Tipo</td>
+                        <td>@item.Data</td>
+                        <td>@item.Valor</td>
+                        <td><button type="button" class="btn btn-block btn-outline-warning"
+                                onclick="Editar(@item.Id.ToString())">Editar</button></td>
+                        <td><button type="button" class="btn btn-block btn-outline-danger"
+                                onclick="Excluir(@item.Id.ToString())">Excluir</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+<script>
+    function Excluir(id) {
+        window.location.href = "../Transacao/Excluir/" + id;
+    }
+
+    function Editar(id) {
+        window.location.href = "../Transacao/Cadastrar/" + id;
+    }
+</script>
