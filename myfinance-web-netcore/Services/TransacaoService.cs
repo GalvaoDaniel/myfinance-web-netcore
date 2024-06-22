@@ -45,6 +45,7 @@ namespace myfinance_web_netcore.Services
 
         public void Salvar(TransacaoModel model)
         {
+            model.Data = SetKindUtc(model.Data);
             var dbSet = _myFinanceDbContext.Transacao;
             var item = _mapper.Map<Transacao>(model);
 
@@ -59,6 +60,15 @@ namespace myfinance_web_netcore.Services
             }
 
             _myFinanceDbContext.SaveChanges();
+        }
+
+        public DateTime SetKindUtc(DateTime dateTime)
+        {
+            if (dateTime.Kind == DateTimeKind.Utc) 
+            { 
+                return dateTime; 
+            }
+            return DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
         }
     }
 }
